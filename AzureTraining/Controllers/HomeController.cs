@@ -17,10 +17,10 @@ namespace AzureTraining.Controllers
         public ActionResult Resource()
         {
             List<TrainingDeck> decks = new List<TrainingDeck>();
-            //decks.Add(new TrainingDeck("HOL_LAB_#01", "~/Content/HOL_LAB_01.zip"));
             decks.Add(new TrainingDeck("VM 실습 자료", " "));
             decks.Add(new TrainingDeck("Azure VM 실습자료 1. Virtual Machine", "https://webinarhub.blob.core.windows.net/azurehol/1.%20Create%20Virtual%20Machine%20(Ubuntu).docx"));
             decks.Add(new TrainingDeck("Azure VM 실습자료 2. Network", "https://webinarhub.blob.core.windows.net/azurehol/2.%20Manage%20Network.docx"));
+            decks.Add(new TrainingDeck("Azure VM 실습자료 3. NSG & SLB", "https://webinarhub.blob.core.windows.net/azurehol/Azure%20IaaS%20Tutorial-IIS%20%EC%84%A4%EC%B9%98.docx"));
             decks.Add(new TrainingDeck(" ", " "));
             //
             decks.Add(new TrainingDeck("IOT 실습 자료", " "));
@@ -35,10 +35,9 @@ namespace AzureTraining.Controllers
             decks.Add(new TrainingDeck(" ", " "));
             //
             decks.Add(new TrainingDeck("Networking 실습 자료", " "));
-            decks.Add(new TrainingDeck("Azure Networking - L4 Load Balancer", "https://webinarhub.blob.core.windows.net/azurehol/2.%20Manage%20Network.docx"));
-            decks.Add(new TrainingDeck("Azure Networking - VNet2VNet & S2S", "https://webinarhub.blob.core.windows.net/azurehol/6.%20VNet2VNet.docx"));
-            decks.Add(new TrainingDeck("Azure Networking - P2S (Point-to-Site)", "https://webinarhub.blob.core.windows.net/azurehol/Azure%20Connect%20Tutorial_P2S.docx"));
-            decks.Add(new TrainingDeck(" ", " "));
+            decks.Add(new TrainingDeck("Azure Networking 1. L4 Load Balancer", "https://webinarhub.blob.core.windows.net/azurehol/2.%20Manage%20Network.docx"));
+            decks.Add(new TrainingDeck("Azure Networking 2. VNet2VNet & S2S", "https://webinarhub.blob.core.windows.net/azurehol/6.%20VNet2VNet.docx"));
+            decks.Add(new TrainingDeck("Azure Networking 3. P2S (Point-to-Site)", "https://webinarhub.blob.core.windows.net/azurehol/Azure%20Connect%20Tutorial_P2S.docx"));
 
             return View(decks);
         }

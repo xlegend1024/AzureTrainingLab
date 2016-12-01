@@ -15,7 +15,14 @@
             {
                 <tr>
                     <td>
-                        @item.name
+                        @if (item.url.Length < 2)
+                        {
+                            <b class="alert-info">@item.name</b>
+                        }
+                        else
+                        {
+                            @item.name
+                        }
                     </td>
                     <td align="center">
                         @if (item.url.Length < 2)
@@ -24,7 +31,7 @@
                         }
                         else
                         {
-                        <a href="@item.url" target="_blank">Download</a>
+                            <a href="@item.url" target="_blank">Download</a>
                         }
                     </td>
                 </tr>
@@ -33,8 +40,9 @@
     </table>
 </div>
 
+<hr />
 <h2>IoT Hub SDK</h2>
-<table>
+<table class="item tooltip">
     <tr class="alert-info">
         <td>
             <a href="https://github.com/Azure/azure-iot-sdks">바로 가기</a>
