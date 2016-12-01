@@ -1,0 +1,189 @@
+﻿@{
+    ViewBag.Title = "HOL #1.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="top">
+    <div class="panel-heading">
+        <h1>Hand on Lab Scenario #1.</h1>
+        <p class="panel-body">
+            Deploy a web server using LAMP. (Linux, Apache, MySQL, PHP). <br />
+            <i> Estimate 2 Hours </i><br />
+        </p>
+    </div>
+</div>
+<div class="body-content">
+    <img src="~/Content/Lab01_Architecture.png" style="width: 80%; height: 80%" /> <!-- height="300" width="700" -->
+</div>
+<div class="row body-content">
+    <h4>0. Login Azure Management Portal</h4>
+    <a class="btn alert-success" href="https://manage.windowsazure.com" target="_blank">Azure Classic Portal &raquo;</a><br />
+    <hr />
+    <h4>1. Create Storage</h4>
+    <p>
+        Let's create a storage location in East Asia.<br />
+        Chooes storage replication as LRS(Local Redundant Storage).<br />
+        <img src="~/Content/Lab01_Storage.png" class="img-thumbnail" style="width: 60%; height: 60%" /><br />
+    </p>
+    <hr />
+    <h4>2. Create Virtual Network </h4>
+    <p>
+        Let's create a Virtual Netowkr in East Asia.<br />
+        <img src="~/Content/Lab01_VirtualNetwork.png" class="img-thumbnail" style="width: 60%; height: 60%" /><br />
+        <table style="width:100%;" class="table table-striped table-bordered">
+            <tr style="font: bold"><td>Virtual Network Name&nbsp;</td><td>Address Space</td><td>Location&nbsp;</td></tr>
+            <tr><td>azuretech-lab-vnet</td><td>10.0.0.0/20&nbsp;</td><td>East Asia&nbsp;</td></tr>
+        </table><br />
+    </p>
+    <hr />
+    <h4>3. Create Cloud Service </h4>
+    <p>
+        Let's create a cloud service in East Asia.<br />
+        <img src="~/Content/Lab01_CloudService.png" class="img-thumbnail" style="width: 60%; height: 60%" /><br />
+    </p>
+    <hr />
+    <h4>4. Create Virtual Machine</h4>
+    <p>
+        Create Ubuntu 14.04 LTS Linux Virtual Machine in East Asia.<br />
+        While you are creating the VM, choose storage account, Virtual Network and cloud service carefully you made just before in 1, 2 and 3.<br />
+        <img src="~/Content/Lab01_VirtualMachine.png" class="img-thumbnail" style="width: 60%; height: 60%" /><br />
+
+        <table style="width:100%;" class="table table-striped table-bordered">
+            <tr style="font: bold"><td>VM Name&nbsp;</td><td>OS&nbsp;</td><td>Size&nbsp;</td><td>Cloud Service&nbsp;</td><td>Region/Network&nbsp;</td><td>Endpoints&nbsp;</td></tr>
+            <tr><td>Dev&nbsp;</td><td>Ubuntu 14.04 LTS&nbsp;</td><td>Standard D1&nbsp;</td><td>azuretech-lab-hkg&nbsp;</td><td>azuretech-lab-vnet&nbsp;</td><td>SSH TCP 2200, WEB TCP 8000&nbsp;</td></tr>
+        </table>
+    </p>
+    <div class="alert-info">
+        <div class="panel-body">
+            <h4 class="badge">Tip</h4>
+            <p>
+                http://azure.com has many resources. <br />
+                You can find how to create VMs and also additional feature of Virtual Machine at following link.<br />
+                <a class="btn btn-info" href="https://azure.microsoft.com/documentation/articles/virtual-machines-linux-tutorial/" target="_blank">How to create VM.</a>
+            </p>
+        </div>
+    </div>
+    <hr />
+    <h4>5. Install packages</h4>
+    <p>
+        Access Dev machine. Note that SSH port is 2200, if you chaged it at previous step 4.<br />
+        <img src="~/Content/Lab01_putty.png" class="img-thumbnail" style="width: 40%; height: 40%" /><br />
+    </p>
+    <p>
+        Install MySQL, Apache, PHP using following command. <br />
+        <ol class="alert-success list-group-item ">
+            sudo apt-get update
+            <br />
+            sudo apt-get install apache2 php5 php5-mysql
+            <br />
+        </ol>
+        Create welcome page using following commnad. <br />
+        <ol class="list-group-item alert-success">
+            sudo -s
+            <br />
+            echo '&lt;h1&gt;Hello World from &lt;?php echo gethostname(); ?&gt; Azure VM.&lt;/h1&gt; &lt;?php echo date("Y-m-d (H:i:s)"); ?&gt;' &gt; /var/www/html/index.php
+            <br />
+            exit
+            <br />
+        </ol>
+    </p>
+    <div class="alert-info">
+        <div class="panel-body">
+            <h4 class="badge">Tip</h4>
+            <p>
+                In order to connect to ssh, Putty is required. <br />
+                Please download putty at the following link. <br />
+                <a class="btn btn-info" href="http://putty.org" target="_blank">Go to Putty.org</a></>
+        </div>
+    </div>
+    <hr />
+    <div class="row body-content">
+        <h4>6. Capture Virtual Machine</h4>
+        <p>Capture a Virtual Machine</p>
+        After you check slected VM, click capture button to create customized image. <br />
+        <img src="~/Content/Lab01_Capture.png" class="img-thumbnail" style="width: 60%; height: 60%" /><br />
+        Type detail information should be filled out to remember exactly what the image is.<br />
+        <img src="~/Content/Lab01_Capture_2.png" class="img-thumbnail" style="width: 40%; height: 40%" /><br />
+    </div>
+    <div>WALiunx Deprovison commnad: <br/>
+        Ubuntu: <b>sudo /usr/sbin/waagent -deproviion</b></div>
+    <hr />
+    <div class="row body-content">
+        <h4>7. Create three web servers using Custom Image</h4>
+        <p>
+            Create three VMs using your own custom image.<br />
+            <img src="~/Content/Lab01_CreateWebServerIMAGE.png" class="img-thumbnail" style="width: 60%; height: 60%" /><br />
+            This time make sure that you enable Availability Set. <br />
+            <img src="~/Content/Lab01_Capture_3.png" class="img-thumbnail" style="width: 60%; height: 60%" /><br />
+            You will repeat two more time to create three web servers for a service. <br />
+            <img src="~/Content/Lab01_Capture_4.png" class="img-thumbnail" style="width: 60%; height: 60%" /><br />
+        </p>
+    </div>
+    <hr />
+    <div class="row body-content">
+        <h4>8. Create Load Balancer for Web Servicve</h4>
+        <p>
+            Select virtual machine, Web1 and go to ENDPOINTS of its menu.<br />
+            Click Add button and create a new Load Balancer. <br />
+            In order to make a Load Balancer, you must check "CREATE A LOAD-BALANCED SET".<br />
+            <img src="~/Content/Lab01_SLB_1.png" class="img-thumbnail" style="width: 50%; height: 50%" /><br />
+            Add endpoint to Web2 and Web3 in ENDPOINTS menu of each virtual machine. Keep that you should add exsiting load balancer set.<br />
+            <img src="~/Content/Lab01_SLB_3.png" class="img-thumbnail" style="width: 50%; height: 50%" /><br />
+        </p>
+    </div>
+    <hr />
+    <ol class="row body-content">
+        <h4>9. Create MySQL Server</h4>
+        <p>
+            Create a VM to install MySQL on it.<br />
+            <br />
+            <br />
+            Install MySQL using following command. <br />
+            Note that you need to type password of MySQL root.<br />
+            <ol class="alert-success list-group-item ">
+                sudo apt-get update
+                <br />
+                sudo apt-get install mysql-server mysql-client
+                <br />
+                sudo service mysql restart
+            </ol>
+            Update user root can be access from other hosts. <br />
+            <ol class="alert-success list-group-item ">
+                mysql -uroot -p
+                <br />
+                use mysql;
+                <br />
+                update user set host='%' where user = 'root' and host='127.0.0.1';
+                <br />
+            </ol>
+            <img src="~/Content/Lab01_MySQL_2.png" class="img-thumbnail" /><br />
+            Modify /etc/mysql/my.cnf. The 'bind-address = 127.0.0.1' should be commented to ignore it.
+            <ol class="alert-success list-group-item ">
+                #bind-address = 127.0.0.1
+                <br />
+            </ol>
+            Test MySQL connection from Dev VM.<br />
+            Connect Dev VM using Putty. And add following php sample to index.php.<br />
+            Note that ipaddress, username (default:root) and password in following sample should be replaced.<br />
+            <ol class="alert-success list-group-item ">
+                &lt;?php
+                <br>$servername = &quot;ipaddress&quot;;
+                <br>$username = &quot;username&quot;;
+                <br>$password = &quot;password&quot;;
+                <br>
+                <br>// Create connection
+                <br>$conn = new mysqli($servername, $username, $password);
+                <br>
+                <br>// Check connection
+                <br>
+                if ($conn-&gt;connect_error)&nbsp;{
+                <br>
+                &nbsp;&nbsp;&nbsp; die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);
+                <br>}
+                <br>echo &quot;Connected successfully&quot;;
+                <br>
+                ?&gt;
+            </ol>
+        </p>
+</div>

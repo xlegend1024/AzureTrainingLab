@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Azure Training@Korea</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script type="text/javascript">
+        var appInsights = window.appInsights || function (config) {
+            function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for (o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
+        }({
+            instrumentationKey: "7ec37bc7-b561-422f-9160-b4bb00a216ec"
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Azure Training", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("FREEPASS", "freepass", "Home")</li>
+                    <li>@Html.ActionLink("Lab 01", "lab01", "Home")</li>
+                    <li>@Html.ActionLink("Lab 02", "lab02", "Home")</li>
+                    <li>@Html.ActionLink("Lab 03", "lab03", "Home")</li>
+                    <li>@Html.ActionLink("Lab 04", "lab04", "Home")</li>
+                    <li>@Html.ActionLink("Lab 12", "lab12", "Home")</li>
+                    <li>@Html.ActionLink("Lab 20", "lab20", "Home")</li>
+                    <li>@Html.ActionLink("Lab 101", "lab101", "Home")</li>
+                    <li>@Html.ActionLink("Lab 102", "lab102", "Home")</li>
+                    <li>@Html.ActionLink("Resources", "Resource", "Home")</li>
+                    <li>@Html.ActionLink("Webinar", "Webinar", "Home")</li>
+                </ul>
+                <!--
+                                /* @Html.Partial("_LoginPartial") */
+                -->
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Microsoft Azure Web App</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

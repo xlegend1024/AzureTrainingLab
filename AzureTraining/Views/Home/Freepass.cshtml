@@ -1,0 +1,36 @@
+﻿@using AzureTraining.Models
+@model IEnumerable<AzureTraining.Models.freepass>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Freepass</h2>
+@using (Html.BeginForm("Freepass", "HOME", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group" style="right:auto">
+        @Html.TextBox("textbox1", "")
+        <input id="Submit1" type="submit" value="submit code" class="btn btn-default" />
+    </div>
+    
+    <div style="align-content: center">
+        <h2 class="nav navbar-link"><a href="http://www.microsoftazurepass.com/" target="_blank">Goto Azure Free Pass register page.</a></h2><br />
+        <table style="width:100%;" class="table table-striped">
+            <tr><td>Index&nbsp;</td><td>Code&nbsp;</td></tr>
+            @if (Model != null)
+            {
+                foreach (AzureTraining.Models.freepass item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.id
+                        </td>
+                        <td>
+                            @item.code
+                        </td>
+                    </tr>
+                };
+            }
+        </table>
+    </div>
+}
+

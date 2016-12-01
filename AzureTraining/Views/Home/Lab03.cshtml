@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "HOL #3.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="top">
+    <div class="panel-heading">
+        <h1>Hand on Lab Scenario #3.</h1>
+        <p class="panel-body">
+            Configure Virtual Network S2S and P2S<br />
+            <i> Estimate 1.5 Hours </i> <br />
+        </p>
+    </div>
+</div>
+
+<div class="body-content">
+    <img src="~/Content/Lab03_Vnet_0.png" style="width: 80%; height: 80%" /> <!-- height="300" width="700" -->
+</div>
+<div class="row body-content">
+    <h4>0. Login Azure Management Portal</h4>
+    <a class="btn alert-success" href="https://manage.windowsazure.com" target="_blank">Azure Classic Portal &raquo;</a><br />
+    <hr />
+    <h4>1. Create Storage </h4>
+    <p>
+        Create two Storage Account<br />
+        <table style="width:100%;" class="table table-striped table-bordered">
+            <tr style="font: bold"><td>Storage Account Name&nbsp;</td><td>Location</td><td>Replication&nbsp;</td></tr>
+            <tr><td>azuretechlab3hkg</td><td>East Asia&nbsp;</td><td>LRS&nbsp;</td></tr>
+            <tr><td>azuretechlab3sig</td><td>SouthEast Asia&nbsp;</td><td>LRS&nbsp;</td></tr>
+        </table><br />
+    </p>
+    <hr />
+    <h4>2. Create Virtual Network</h4>
+    <p>
+        <table style="width:100%;" class="table table-striped table-bordered">
+            <tr style="font: bold"><td>Virtual Network Name&nbsp;</td><td>Point-to-Site</td><td>Site-to-Site</td><td>Address Space</td><td>Location&nbsp;</td></tr>
+            <tr><td>lab3-hkg-vnet</td><td>Enable, 192.168.0.0/24</td><td>Enable</td><td>10.1.0.0/16&nbsp;</td><td>East Asia&nbsp;</td></tr>
+            <tr><td>lab3-sig-vnet</td><td> </td><td>Enable</td><td>10.2.0.0/16&nbsp;</td><td>East Asia&nbsp;</td></tr>
+        </table><br />
+        2.1. Create Virtual Network in East Asia<br />
+        <table class="table table-striped table-bordered">
+            <tr> <td><img src="~/Content/Lab03_Vnet_1.png" class="img-thumbnail img-responsive" /></td></tr>
+            <tr> <td><img src="~/Content/Lab03_Vnet_2.png" class="img-thumbnail img-responsive" /></td></tr>
+            <tr> <td><img src="~/Content/Lab03_Vnet_3.png" class="img-thumbnail img-responsive" /></td></tr>
+            <tr> <td><img src="~/Content/Lab03_Vnet_4.png" class="img-thumbnail img-responsive" /></td></tr>
+            <tr> <td><img src="~/Content/Lab03_Vnet_5.png" class="img-thumbnail img-responsive" /></td></tr>
+            <tr> <td><img src="~/Content/Lab03_Vnet_6.png" class="img-thumbnail img-responsive" /></td></tr>
+        </table>
+        2.2. Create Virtual Netowkr in SouthEast Asia<br />
+        <table class="table table-striped table-bordered">
+            <tr> <td> <img src="~/Content/Lab03_Vnet_1.png" class="img-thumbnail img-responsive" /> </td> </tr>
+            <tr> <td> <img src="~/Content/Lab03_Vnet_7.png" class="img-thumbnail img-responsive" /> </td> </tr>
+            <tr> <td> <img src="~/Content/Lab03_Vnet_8.png" class="img-thumbnail img-responsive" /> </td> </tr>
+            <tr> <td> <img src="~/Content/Lab03_Vnet_9.png" class="img-thumbnail img-responsive" /> </td> </tr>
+            <tr> <td> <img src="~/Content/Lab03_Vnet_10.png" class="img-thumbnail img-responsive" /> </td> </tr>
+        </table>
+        2.2. Create Gateway for both virtual network (<b>This will takes 30 mins.</b>)
+        <br />
+        For East Asia Virtual Network Gateway, Click Create Gateway button.<br />
+        <img src="~/Content/Lab03_Vnet_12.png" class="img-thumbnail img-responsive" style="width: 60%; height: 60%" />        <br />
+        For SouthEast Asia Virtual Network Gateway (Select Dynamic).<br />
+        <img src="~/Content/Lab03_Vnet_13.png" class="img-thumbnail img-responsive" style="width: 60%; height: 60%" />        <br />
+        2.3. Confirm Local Networks<br />
+        <img src="~/Content/Lab03_Vnet_11.png" class="img-thumbnail img-responsive" style="width: 60%; height: 60%" />        <br />
+    </p>
+    <hr />
+    <h4>3. Create Cloud Service </h4>
+    <p>
+        Let's create a cloud service in East Asia and SouthEast Asia.<br />
+        <table style="width:100%;" class="table table-striped table-bordered">
+            <tr style="font: bold"><td>URL&nbsp;</td><td>Region</td></tr>
+            <tr><td>azuretech-lab3-hkg</td><td>East Asia&nbsp;</td></tr>
+            <tr><td>azuretech-lab3-sig</td><td>SouthEast Asia&nbsp;</td></tr>
+        </table><br />
+    </p>
+    <hr />
+    <h4>4. Create Virtual Machine </h4>
+    <p>
+        Create Virtual Machines in each region.<br />
+        <table style="width:100%;" class="table table-striped table-bordered">
+            <tr style="font: bold"><td>VM Name&nbsp;</td><td>OS&nbsp;</td><td>Size&nbsp;</td><td>Cloud Service&nbsp;</td><td>Region/Network&nbsp;</td><td>Storage&nbsp;</td></tr>
+            <tr><td>hkg1&nbsp;</td><td>Windows Server 2012 R2&nbsp;</td><td>Standard D1&nbsp;</td><td>azuretech-lab3-hkg&nbsp;</td><td>lab3-hkg-vnet&nbsp;</td><td>azuretechlab3hkg&nbsp;</td></tr>
+            <tr><td>sig1&nbsp;</td><td>Windows Server 2012 R2&nbsp;</td><td>Standard D1&nbsp;</td><td>azuretech-lab3-sig&nbsp;</td><td>lab3-sig-vnet&nbsp;</td><td>azuretechlab3sig&nbsp;</td></tr>
+        </table>
+    </p>
+    <hr />
+    <h4>5. Update Gateway IP Address </h4>
+    <p>
+        Find Gateway IP address and change VPN Gateway Address at local Networks. <br />
+        <table class="table table-striped table-bordered">
+            <tr> <td> <img src="~/Content/Lab03_Vnet_14.png" class="img-thumbnail img-responsive" /> </td> </tr>
+            <tr> <td> <img src="~/Content/Lab03_Vnet_15.png" class="img-thumbnail img-responsive" /> </td> </tr>
+        </table><br />
+        Change VPN Gateway Address. <br />
+        <table class="table table-striped table-bordered" style="width:100%">
+            <tr> <td> <img src="~/Content/Lab03_Vnet_16.png" class="img-thumbnail img-responsive" style="width:90%" /> </td> <td><img src="~/Content/Lab03_Vnet_17.png" style="width:90%" /> </td> </tr>
+        </table><br />
+    </p>
+    <hr />
+    <h4>6. Share authentication keys between the two virtual networks.</h4>
+    <p>
+        Run powershell and exectue following script to share authentication keys.<br />
+        Note that following Shared Key is just exmaple. DO NOT USE IT IN PRODUCTION.<br />
+        <ol class="alert-success list-group-item ">
+            Add-AzureAccount
+            <br />
+            Select-AzureSubscription -SubscriptionName '
+            <i>subscription name here</i>'
+            <br />
+            Set-AzureVNetGatewayKey -VNetName lab3-hkg-vnet -LocalNetworkSiteName sig -SharedKey A1b2C3D4
+            <br />
+            Set-AzureVNetGatewayKey -VNetName lab3-sig-vnet -LocalNetworkSiteName hkg -SharedKey A1b2C3D4
+            <br />
+        </ol>
+        <br />
+        After success of powershell command above, goto Azure Management Portal to continue link between Azure Networks.<br />
+        <table class="table table-striped table-bordered">
+            <tr> <td> <img src="~/Content/Lab03_Vnet_19.png" class="img-thumbnail img-responsive" style="width:90%" /> </td> <td><img src="~/Content/Lab03_Vnet_20.png" class="img-thumbnail img-responsive" style="width:90%" /> </td> </tr>
+        </table><br />
+    </p>
+    <hr />
+    <hr />
+    <h4>5. Configure P2S</h4>
+    <p>
+        Upload root certificate to Azure <br />
+        <img src="~/Content/Lab03_Vnet_21.png" class="img-thumbnail img-responsive" style="width: 70%; height: 70%" /><br />
+        Once you upload it, you are not able to download from Azure Management Portal.<br />
+        <img src="~/Content/Lab03_Vnet_22.png" class="img-thumbnail img-responsive" style="width: 70%; height: 70%" /><br />
+        Go back to Dashboard.<br />
+        You can find Client VPN Packages are ready to be downloaded. <br />
+        Click appropreate link to download the Client VPN Package<br />
+        <img src="~/Content/Lab03_Vnet_23.png" class="img-thumbnail img-responsive" style="width: 70%; height: 70%" /><br />
+        Download it and install the package.<br />
+        When installation is completed, you can find VPN profile is created.<br />
+        If you see follow error, you need to make sure that Client certificat is installed.<br />
+        <ul>
+            <li>
+                A certificate could not be found that can be used with this Extensible Authentication Protocol. (Error 798)
+            </li>
+        </ul>
+        When client connect to Azure Virtual Network, you can see number of clinet is changed in Virtual Netowrk Dashboard.<br />
+        <img src="~/Content/Lab03_Vnet_25.png" class="img-thumbnail img-responsive" style="width: 70%; height: 70%" /><br />
+
+    </p>
+    <div class="alert-info">
+        <div class="panel-body">
+            <h4 class="badge">Tip</h4>
+            <p>
+                In order to save your time, you can download one of certificate. <br />
+                Client Password is '1q2w3e4r'.<br />
+                <ul>
+                    <li>
+                        <a href="~/Content/C1.zip">Certificate 1</a>
+                    </li>
+                    <li>
+                        <a href="~/Content/C2.zip">Certificate 2</a>
+                    </li>
+                    <li>
+                        <a href="~/Content/C3.zip">Certificate 3</a>
+                    </li>
+                    <li>
+                        <a href="~/Content/C4.zip">Certificate 4</a>
+                    </li>
+                </ul>
+        </div>
+    </div>
+    <hr />
+</div>

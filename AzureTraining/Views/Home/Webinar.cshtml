@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AzureTraining.Models.WebinarVideo>
+@{
+    ViewBag.Title = "Webinar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <p><h1 class="active">웨비나 링크 모음 (2014년 ~ 현재)</h1></p> <br />
+    <table style="width:100%;" class="table">
+        @if (Model != null)
+        {
+            foreach (AzureTraining.Models.WebinarVideo item in Model)
+            {
+                <tr style="background-color:silver">
+                    <td colspan="2" valign="middle">
+                        <h3>@item.name</h3>
+                    </td>
+                </tr>
+                <tr style="border:none">
+                    <td width="510px">
+                        <video width="500" height="280" controls class="media" style="border:none">
+                            <source src="@item.url" type="video/mp4">Your browser does not support the video tag.
+                        </video>
+                    </td>
+                    <td align="center" valign="middle">
+                        <p style="vertical-align:middle">@item.desc</p>
+                    </td>
+                </tr>
+                <tr style="height:30px"></tr>
+            };
+        }
+    </table>
+</div>

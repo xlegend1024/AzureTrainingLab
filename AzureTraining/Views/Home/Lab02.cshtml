@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "HOL #2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="top">
+    <div class="panel-heading">
+        <h1>Hand on Lab Scenario #2.</h1>
+        <p class="panel-body">Manage VMs using Auto-Scaling, Backup and Monitoring services.</p>
+    </div>
+</div>
+
+<div class="row body-content">
+    <h4>0. Login Azure Management Portal</h4>
+    <a class="btn alert-success" href="https://manage.windowsazure.com" target="_blank">Azure Classic Portal &raquo;</a><br />
+    <hr />
+    <h4>1. Configure Auto-Scaling.</h4>
+    <p>
+        When you create two or more web servers, you might want to use thoes web servers cost effiective ways.<br />
+        By turn Auto-Scale on, you are able to save cost.<br />
+        You can find Auto-Scaling menu in Scale of Cloud Service menu.<br />
+        In order to use Auto-Scaling in Azure, you must meet following requirements. <br />
+        <ul>
+            <li> VMs should be set as a same Availability Set.<br /></li>
+            <li> VMs in an Availability Set must be same size.<br /></li>
+        </ul>
+        <img src="~/Content/Lab02_AutoScale_1.png" class="img-thumbnail" style="width: 60%; height: 60%" /><br />
+    </p>
+    <div class="alert-info">
+        <div class="panel-body">
+            <h4 class="badge">Tip</h4>
+            <p>
+                If you need detail information about Auto-Scaling please find detail following link.<br />
+                <a class="btn btn-info" href="https://azure.microsoft.com/ko-kr/documentation/articles/best-practices-auto-scaling/" target="_blank">Learn more</a></>
+        </div>
+    </div>
+    <hr />
+    <h4>2. Backup VM instances. <i>(Preview)</i></h4>
+    <p>
+        <img src="~/Content/Lab02_backup_1.png" class="img-thumbnail" style="width: 60%; height: 60%" /><br />
+    </p>
+    <hr />
+    <h4>3. Monitor VMs</h4>
+    <p>
+        There are two metrics that user can set rules.<br />
+        <ul>
+            <li> Monitoring metrics from the virtual machine host operating system<br /></li>
+            <li> Web endpoint status metrics<br /></li>
+        </ul>
+        Note that you can set 10 rules per subscription. <br />
+        <br />
+        Virtual Machine metrics.<br />
+        <img src="~/Content/Lab02_monitoring_2.png" class="img-thumbnail" style="width: 60%; height: 60%" /> <br />
+        Web endpoint statu metircs.<br />
+        <img src="~/Content/Lab02_monitoring_1.png" class="img-thumbnail" style="width: 60%; height: 60%" /><br />
+    </p>
+    <hr />
+</div>
+
