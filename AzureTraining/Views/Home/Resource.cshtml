@@ -18,7 +18,14 @@
                         @item.name
                     </td>
                     <td align="center">
+                        @if (item.url == string.Empty)
+                        {
+                            
+                        }
+                        else
+                        {
                         <a href="@item.url" target="_blank">Download</a>
+                        }
                     </td>
                 </tr>
             };
