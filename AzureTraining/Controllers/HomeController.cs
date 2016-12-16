@@ -138,7 +138,16 @@ namespace AzureTraining.Controllers
 
         public ActionResult Lab101()
         {
-            return View();
+            List<WebinarVideo> openedx = new List<WebinarVideo>();
+            openedx.Add(new WebinarVideo("1", "Microsoft Azure Virtual Machines ", "https://openedx.microsoft.com/courses/course-v1:Microsoft+AZURE202x+2016_T1/about"));
+            openedx.Add(new WebinarVideo("2", "Microsoft Azure Virtual Networks", "https://openedx.microsoft.com/courses/course-v1:Microsoft+AZURE203x+2016_T4/about"));
+            openedx.Add(new WebinarVideo("3", "Microsoft Azure Identity", "https://openedx.microsoft.com/courses/course-v1:Microsoft+AZURE204x+2016_T4/about"));
+            openedx.Add(new WebinarVideo("4", "Microsoft Azure Storage", "https://openedx.microsoft.com/courses/course-v1:Microsoft+AZURE205x+2016_T4/about"));
+            openedx.Add(new WebinarVideo("5", "Azure Fundamentals", "https://openedx.microsoft.com/courses/course-v1:Microsoft+AZURE214x+2016_T4/about"));
+            openedx.Add(new WebinarVideo("6", "Microsoft Azure for AWS Experts", "https://openedx.microsoft.com/courses/course-v1:Microsoft+Azure213x+2016_T4/about"));
+            openedx.Add(new WebinarVideo("7", "Automating Azure Workloads", "https://openedx.microsoft.com/courses/course-v1:Microsoft+AZURE210x+2016_T4/about"));
+            openedx.Add(new WebinarVideo("8", "Managing Azure Workloads", "https://openedx.microsoft.com/courses/course-v1:Microsoft+Azure209x+2016_T4/about"));
+            return View(openedx);
         }
 
         public ActionResult Lab102()
