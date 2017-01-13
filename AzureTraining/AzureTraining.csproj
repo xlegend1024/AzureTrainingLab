@@ -300,6 +300,13 @@
     <Content Include="Content\Fundamentals of Azure.pdf" />
     <Content Include="Content\Microsoft Azure 소개 v1.0.pptx" />
     <Content Include="Content\Azure_준비사항.pdf" />
+    <Content Include="Content\1. Create Virtual Machine %28Ubuntu%29.docx" />
+    <Content Include="Content\10. Azure Data Lake.docx" />
+    <Content Include="Content\11. Chatbot_QnA_Maker.docx" />
+    <Content Include="Content\2. Manage Network.docx" />
+    <Content Include="Content\5. Create Splunk Single Dev.docx" />
+    <Content Include="Content\7. Devtest Labs for WebDev.docx" />
+    <Content Include="Content\8. ASPNET MVC5 with SQL DB.docx" />
     <None Include="Properties\PublishProfiles\azureiotlabs - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\azuretraining-ko - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

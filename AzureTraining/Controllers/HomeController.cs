@@ -38,6 +38,10 @@ namespace AzureTraining.Controllers
             decks.Add(new TrainingDeck("Azure Networking 1. L4 Load Balancer", "https://webinarhub.blob.core.windows.net/azurehol/2.%20Manage%20Network.docx"));
             decks.Add(new TrainingDeck("Azure Networking 2. VNet2VNet & S2S", "https://webinarhub.blob.core.windows.net/azurehol/6.%20VNet2VNet.docx"));
             decks.Add(new TrainingDeck("Azure Networking 3. P2S (Point-to-Site)", "https://webinarhub.blob.core.windows.net/azurehol/Azure%20Connect%20Tutorial_P2S.docx"));
+            decks.Add(new TrainingDeck(" ", " "));
+            decks.Add(new TrainingDeck("실습 자료1 ", "http://azureiotlabs.azurewebistes.net/content/1. Create Virtual Machine (Ubuntu).docx"));
+            decks.Add(new TrainingDeck("실습 자료2 ", "http://azureiotlabs.azurewebistes.net/content/2. Manage Network.docx"));
+            decks.Add(new TrainingDeck("실습 자료3 ", "http://azureiotlabs.azurewebistes.net/content/5. Create Splunk Single Dev.docx"));
 
             return View(decks);
         }
