@@ -17,6 +17,17 @@ namespace AzureTraining.Controllers
         public ActionResult Resource()
         {
             List<TrainingDeck> decks = new List<TrainingDeck>();
+            decks.Add(new TrainingDeck("2017 HOL (updated)", " "));
+            decks.Add(new TrainingDeck("1. VM 구성", "https://webinarhub.blob.core.windows.net/javaonazure/1.%20Create%20Virtual%20Machine%20(Ubuntu).docx"));
+            decks.Add(new TrainingDeck("2. SLB 구성", "https://webinarhub.blob.core.windows.net/javaonazure/2.%20Manage%20Network.docx"));
+            decks.Add(new TrainingDeck("3. Splunk VM", "https://webinarhub.blob.core.windows.net/javaonazure/5.%20Create%20Splunk%20Single%20Dev.docx"));
+            decks.Add(new TrainingDeck("4. DevTest Lab VM", "https://webinarhub.blob.core.windows.net/javaonazure/7.%20Devtest%20Labs%20for%20WebDev.docx"));
+            decks.Add(new TrainingDeck("5. Web and DB Service Paltform", "https://webinarhub.blob.core.windows.net/javaonazure/8.%20ASPNET%20MVC5%20with%20SQL%20DB.docx"));
+            decks.Add(new TrainingDeck("6. Data Lake 실습 문서", "https://webinarhub.blob.core.windows.net/javaonazure/10.%20Azure%20Data%20Lake.docx"));
+            decks.Add(new TrainingDeck(" >> U-SQL Query", "https://webinarhub.blob.core.windows.net/javaonazure/ADL_HOL_11.zip"));
+            decks.Add(new TrainingDeck("7. Chatbot과 Chatbot Service", "https://webinarhub.blob.core.windows.net/javaonazure/11.%20Chatbot_QnA_Maker.docx"));
+            decks.Add(new TrainingDeck(" ", " "));
+
             decks.Add(new TrainingDeck("VM 실습 자료", " "));
             decks.Add(new TrainingDeck("Azure VM 실습자료 1. Virtual Machine", "https://webinarhub.blob.core.windows.net/azurehol/1.%20Create%20Virtual%20Machine%20(Ubuntu).docx"));
             decks.Add(new TrainingDeck("Azure VM 실습자료 2. Network", "https://webinarhub.blob.core.windows.net/azurehol/2.%20Manage%20Network.docx"));
@@ -39,8 +50,8 @@ namespace AzureTraining.Controllers
             decks.Add(new TrainingDeck("Azure Networking 2. VNet2VNet & S2S", "https://webinarhub.blob.core.windows.net/azurehol/6.%20VNet2VNet.docx"));
             decks.Add(new TrainingDeck("Azure Networking 3. P2S (Point-to-Site)", "https://webinarhub.blob.core.windows.net/azurehol/Azure%20Connect%20Tutorial_P2S.docx"));
             decks.Add(new TrainingDeck(" ", " "));
-            decks.Add(new TrainingDeck("실습 자료1 ", "https://webinarhub.blob.core.windows.net/javaonazure/1.%20Create%20Virtual%20Machine%20(Ubuntu).docx"));
 
+            
             return View(decks);
         }
 
