@@ -1,0 +1,217 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualMachines_winvpn_adminPassword": {
+      "defaultValue": null,
+      "type": "SecureString"
+    },
+    "virtualMachines_winvpn_name": {
+      "defaultValue": "win-rras",
+      "type": "String"
+    },
+    "networkInterfaces_winvpn2000_name": {
+      "defaultValue": "NIC1",
+      "type": "String"
+    },
+    "networkInterfaces_winvpn333_name": {
+      "defaultValue": "NIC2",
+      "type": "String"
+    },
+    "publicIPAddresses_winvpn_ip_name": {
+      "defaultValue": "rras-ip",
+      "type": "String"
+    },
+    "virtualNetworks_az_networking_hkg_vnet_name": {
+      "defaultValue": "vnet-3",
+      "type": "String"
+    },
+    "storageAccounts_aznetworkinghkgdisks578_name": {
+      "defaultValue": null,
+      "type": "String"
+    },
+    "Location": {
+      "defaultValue": "japanwest",
+      "type": "String"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "comments": "Generalized from resource: '/subscriptions/fcb3e975-c1dd-4538-a033-9cddcfd2bb75/resourceGroups/az-networking-hkg/providers/Microsoft.Compute/virtualMachines/winvpn'.",
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[parameters('virtualMachines_winvpn_name')]",
+      "apiVersion": "2015-06-15",
+      "location": "[parameters('Location')]",
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "Standard_F4"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "MicrosoftWindowsServer",
+            "offer": "WindowsServer",
+            "sku": "2012-R2-Datacenter",
+            "version": "latest"
+          },
+          "osDisk": {
+            "name": "[parameters('virtualMachines_winvpn_name')]",
+            "createOption": "FromImage",
+            "vhd": {
+              "uri": "[concat('https', '://', parameters('storageAccounts_aznetworkinghkgdisks578_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_winvpn_name'),'201610241193.vhd'))]"
+            },
+            "caching": "ReadWrite"
+          },
+          "dataDisks": []
+        },
+        "osProfile": {
+          "computerName": "[parameters('virtualMachines_winvpn_name')]",
+          "adminUsername": "azureadmin",
+          "windowsConfiguration": {
+            "provisionVMAgent": true,
+            "enableAutomaticUpdates": true
+          },
+          "secrets": [],
+          "adminPassword": "[parameters('virtualMachines_winvpn_adminPassword')]"
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_winvpn333_name'))]",
+              "properties": {
+                "primary": true
+              }
+            },
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_winvpn2000_name'))]",
+              "properties": {
+                "primary": false
+              }
+            }
+          ]
+        }
+      },
+      "resources": [],
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_aznetworkinghkgdisks578_name'))]",
+        "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_winvpn333_name'))]",
+        "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_winvpn2000_name'))]"
+      ]
+    },
+    {
+      "comments": "Generalized from resource: '/subscriptions/fcb3e975-c1dd-4538-a033-9cddcfd2bb75/resourceGroups/az-networking-hkg/providers/Microsoft.Network/networkInterfaces/winvpn2000'.",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[parameters('networkInterfaces_winvpn2000_name')]",
+      "apiVersion": "2016-03-30",
+      "location": "[parameters('Location')]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAddress": "10.3.0.5",
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {
+                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_az_networking_hkg_vnet_name')), '/subnets/default')]"
+              }
+            }
+          }
+        ],
+        "dnsSettings": {
+          "dnsServers": []
+        },
+        "enableIPForwarding": false
+      },
+      "resources": [],
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_az_networking_hkg_vnet_name'))]"
+      ]
+    },
+    {
+      "comments": "Generalized from resource: '/subscriptions/fcb3e975-c1dd-4538-a033-9cddcfd2bb75/resourceGroups/az-networking-hkg/providers/Microsoft.Network/networkInterfaces/winvpn333'.",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[parameters('networkInterfaces_winvpn333_name')]",
+      "apiVersion": "2016-03-30",
+      "location": "[parameters('Location')]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAddress": "10.3.0.4",
+              "privateIPAllocationMethod": "Dynamic",
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_winvpn_ip_name'))]"
+              },
+              "subnet": {
+                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_az_networking_hkg_vnet_name')), '/subnets/default')]"
+              }
+            }
+          }
+        ],
+        "dnsSettings": {
+          "dnsServers": []
+        },
+        "enableIPForwarding": false
+      },
+      "resources": [],
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_winvpn_ip_name'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_az_networking_hkg_vnet_name'))]"
+      ]
+    },
+    {
+      "comments": "Generalized from resource: '/subscriptions/fcb3e975-c1dd-4538-a033-9cddcfd2bb75/resourceGroups/az-networking-hkg/providers/Microsoft.Network/publicIPAddresses/winvpn-ip'.",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[parameters('publicIPAddresses_winvpn_ip_name')]",
+      "apiVersion": "2016-03-30",
+      "location": "[parameters('Location')]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic",
+        "idleTimeoutInMinutes": 4
+      },
+      "resources": [],
+      "dependsOn": []
+    },
+    {
+      "comments": "Generalized from resource: '/subscriptions/fcb3e975-c1dd-4538-a033-9cddcfd2bb75/resourceGroups/az-networking-hkg/providers/Microsoft.Network/virtualNetworks/az-networking-hkg-vnet'.",
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[parameters('virtualNetworks_az_networking_hkg_vnet_name')]",
+      "apiVersion": "2016-03-30",
+      "location": "[parameters('Location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "10.3.0.0/16"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "default",
+            "properties": {
+              "addressPrefix": "10.3.0.0/24"
+            }
+          }
+        ]
+      },
+      "resources": [],
+      "dependsOn": []
+    },
+    {
+      "comments": "Generalized from resource: '/subscriptions/fcb3e975-c1dd-4538-a033-9cddcfd2bb75/resourceGroups/az-networking-hkg/providers/Microsoft.Storage/storageAccounts/aznetworkinghkgdisks578'.",
+      "type": "Microsoft.Storage/storageAccounts",
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "kind": "Storage",
+      "name": "[parameters('storageAccounts_aznetworkinghkgdisks578_name')]",
+      "apiVersion": "2016-01-01",
+      "location": "[parameters('Location')]",
+      "tags": {},
+      "properties": {},
+      "resources": [],
+      "dependsOn": []
+    }
+  ]
+}
