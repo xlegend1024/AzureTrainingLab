@@ -308,6 +308,8 @@
     <Content Include="Content\7. Devtest Labs for WebDev.docx" />
     <Content Include="Content\8. ASPNET MVC5 with SQL DB.docx" />
     <Content Include="ARMTemplate\Win_RRAS_azuredeploy.json" />
+    <None Include="Properties\PublishProfiles\azureiotlabs - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\azureiotlabs - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\azureiotlabs - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\azuretraining-ko - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
